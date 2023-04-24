@@ -43,21 +43,12 @@
   <script src="keymap.js"></script>
 
   <script>
-    
     var p = document.getElementById('keystroke')
-    const convertToHex = (code) => {
-          string = JSON.stringify(data[0]).replace("\\u", "").trim()
-          let keyCode = hextodec(JSON.parse(string))
-          p.innerText = keyboardMap[keyCode]  
-
-    }
-
-    const hextodec = (hexnum) => parseInt(hexnum, 16)
+    const hextodec = (hexnum) => parseInt(hexnum, 16);
 
     AsciinemaPlayer.create({
       
-        url: 'emacs.cast',
-        inputOffset: -1.0,
+        url: 'chars2.cast',
         autoPlay: true,
         preload: true,
         loop: true,
@@ -67,14 +58,16 @@
           //remove the escaped unicode chars \u
           //parse the remaing hex code into a decimal e.g. 001b = 27 
           // find corelating key e.g. 27 = escape
-          let sjson = JSON.stringify(data[0]);
-          //is escaped unicode
+          let sjson = JSON.stringify(data[0])
+
           if(sjson.includes("u")){
-              convertToHex(sjson)
+            string = JSON.stringify(data[0]).replace("\\u", "").trim()
+            let keyCode = hextodec(JSON.parse(string))
+            p.innerText = keyboardMap[keyCode]
           }else{
             p.innerText = sjson
           }
-          
+
     });
    
 
