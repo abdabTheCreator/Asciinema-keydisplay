@@ -1,7 +1,7 @@
 const hextodec = (hexnum) => parseInt(hexnum, 16);
 
 function DisplayKeys (castfile,commandId, keyId) {
-    var p = document.getElementById('keystroke')
+    var p = document.getElementById(keyId)
     var player = AsciinemaPlayer.create(castfile,document.getElementById(commandId),{
       autoPlay: true,
       url: castfile,
